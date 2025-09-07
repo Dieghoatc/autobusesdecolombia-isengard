@@ -1,24 +1,23 @@
-import { createContext } from "react";
-import styles from "./Dashboard.module.css";
-import { FormImage } from "./componentes/form-image";
+import { VehicleSearch } from "./componentes/vehicle-search";
 import { Navbar } from "./componentes/navbar";
-import { PrincipalPanel } from "./componentes/principal-panel";
+import { SearchResult } from "./componentes/search-result";
+import { FormUploadImage } from "./componentes/form-upload-image";
 
-const PhotoContext = createContext({
-  plate: "",
-  serial: "",
-});
+import styles from "./Dashboard.module.css";
 
 export function Dashboard() {
   return (
-    <PhotoContext value={{ plate: "", serial: "" }}>
-      <>
-        <Navbar />
-        <main className={styles.main}>
-          <FormImage />
-          <PrincipalPanel />
-        </main>
-      </>
-    </PhotoContext>
+    <>
+      <Navbar />
+      <main className={styles.main}>
+        <div className={styles.searchPhoto}>
+          <VehicleSearch />
+          <SearchResult />
+        </div>
+        <div>
+          <FormUploadImage />
+        </div>
+      </main>
+    </>
   );
 }

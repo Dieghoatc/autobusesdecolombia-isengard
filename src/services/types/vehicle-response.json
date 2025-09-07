@@ -1,0 +1,65 @@
+{
+    "info": {
+        "count": 997,
+        "currentPage": 1,
+        "pages": 50,
+        "limit": 20,
+        "next": "/vehicle?page=2&limit=20",
+        "prev": null,
+        "hasNext": true,
+        "hasPrev": false,
+        "startItem": 1,
+        "endItem": 20
+    },
+    "data": [
+        {
+            "vehicle_id": 1,
+            "vehicle_type_id": 17,
+            "model_id": 1,
+            "company_id": 1,
+            "transport_category_id": 3,
+            "company_serial_id": 1,
+            "company_service_id": 1,
+            "plate": "7692 ao",
+            "year_manufactured": null,
+            "notes": null,
+            "created_at": "2025-07-24T09:06:17.842Z",
+            "vehiclePhotos": [
+                {
+                    "vehicle_photo_id": 1,
+                    "vehicle_id": 1,
+                    "image_url": "https://res.cloudinary.com/dkj6yzrrk/image/upload/v1736662846/autobusesdecolombia/tbohalck1y0kzbmk0nku.webp",
+                    "photographer_id": 1,
+                    "country_id": 7,
+                    "location": "Melbourne",
+                    "department": null,
+                    "description": null,
+                    "notes": null,
+                    "tags": null,
+                    "status": null,
+                    "likes": null,
+                    "views": null,
+                    "favorites": null,
+                    "shares": null,
+                    "comments": null,
+                    "downloads": null,
+                    "created_at": "2025-07-24T09:08:07.251Z"
+                }
+            ],
+            "model": {
+                "model_id": 1,
+                "brand_id": 1,
+                "chassis_id": 166,
+                "bodywork_id": 127,
+                "model_name": "Volvo B7RLE Volgren CR228L",
+                "description": null,
+                "year_from": null
+            },
+            "companySerial": {
+                "company_serial_id": 1,
+                "company_id": 4,
+                "company_serial_code": "8390"
+            }
+        }
+    ]
+}

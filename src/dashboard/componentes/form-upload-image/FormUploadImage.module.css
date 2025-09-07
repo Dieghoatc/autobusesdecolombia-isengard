@@ -1,0 +1,6 @@
+.container {
+    grid-column: 1;
+    grid-row: 2;  
+    border-left: 0.1px solid rgba(0,0,0,0.2);   
+    border-bottom: 0.1px solid rgba(0,0,0,0.2);  
+}
