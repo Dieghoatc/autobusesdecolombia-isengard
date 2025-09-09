@@ -11,7 +11,7 @@ export function useGetVehicleForPlate(plate: string){
         const response = searchVehicleForPlate(plate);
         setLoading(true);
         response.then((data) => {
-            setVehicle(data);
+            setVehicle(data.data);
         }).catch((error) => {
             setError(error);
         }).finally(() => {

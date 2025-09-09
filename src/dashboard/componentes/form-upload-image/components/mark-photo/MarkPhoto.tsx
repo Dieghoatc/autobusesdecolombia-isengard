@@ -38,6 +38,7 @@ export function MarkPhoto() {
 
   const downloadMarkedImage = () => {
     if (imagePreviewUrl) {
+      
       const link = document.createElement("a");
       link.href = imagePreviewUrl;
       link.download = `marked_photo_${Date.now()}.avif`;

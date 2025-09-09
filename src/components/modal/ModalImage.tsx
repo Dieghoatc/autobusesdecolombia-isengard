@@ -33,7 +33,7 @@ export function ModalImage({
         <img
           src={imageSrc}
           alt={imageAlt}
-          className="max-w-full max-h-screen object-contain rounded-lg"
+          className="max-w-full max-h-screen object-contain rounded-lg scale-150"
         />
       </div>
     </div>
