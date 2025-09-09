@@ -1,18 +1,40 @@
 import { useState, useEffect } from "react";
-import { ComoboboxList } from "./components/combobox";
+import { ComoboBoxList } from "./components/combobox-list";
 import { InputFile } from "./components/Input-file/InputFile";
+import { ModalImage } from "@/components/modal";
 
 import { Button } from "@/components/ui/button";
 import styles from "./MarkPhoto.module.css";
+import { useVehicleStore } from "@/lib/store/useVehicleStore";
 
 export function MarkPhoto() {
-  const [author, setAuthor] = useState("");
-  const [city, setCity] = useState("");
+  const [author, setAuthor] = useState({
+    id: "",
+    name: "",
+  });
+  const [city, setCity] = useState({
+    id: "",
+    name: "",
+  });
 
+  const { setAuthorStore, setCityStore } = useVehicleStore();
   const [submitMessage, setSubmitMessage] = useState("");
   const [showComparison, setShowComparison] = useState(false);
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const [originalImagePreview, setOriginalImagePreview] = useState("");
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
+
+  useEffect(() => {
+    setAuthorStore(author);
+    setCityStore(city);
+  }, [author, city, setAuthorStore, setCityStore]);
+
+  function handleOpenModal(src: string) {
+    setModalOpen(true);
+    setImageSrc(src);
+  }
 
   const downloadMarkedImage = () => {
     if (imagePreviewUrl) {
@@ -39,7 +61,7 @@ export function MarkPhoto() {
   return (
     <section className={styles.container}>
       <div className={styles.form_mark_photo}>
-        <ComoboboxList
+        <ComoboBoxList
           author={author}
           setAuthor={setAuthor}
           city={city}
@@ -74,7 +96,10 @@ export function MarkPhoto() {
         {originalImagePreview && !showComparison && (
           <div className="space-y-2">
             <h3 className="text-lg font-semibold">Vista previa:</h3>
-            <div className="border rounded-lg p-4 bg-gray-50">
+            <div
+              className="border rounded-lg p-4 bg-gray-50"
+              onClick={() => handleOpenModal(originalImagePreview)}
+            >
               <img
                 src={originalImagePreview}
                 alt="Vista previa de la foto original"
@@ -100,7 +125,10 @@ export function MarkPhoto() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <h4 className="font-medium text-gray-700">Original</h4>
-                <div className="border rounded-lg p-4 bg-gray-50">
+                <div
+                  className="border rounded-lg p-4 bg-gray-50"
+                  onClick={() => handleOpenModal(originalImagePreview)}
+                >
                   <img
                     src={originalImagePreview}
                     alt="Imagen original"
@@ -111,7 +139,10 @@ export function MarkPhoto() {
 
               <div className="space-y-2">
                 <h4 className="font-medium text-gray-700">Con Marca de Agua</h4>
-                <div className="border rounded-lg p-4 bg-gray-50">
+                <div
+                  className="border rounded-lg p-4 bg-gray-50"
+                  onClick={() => handleOpenModal(imagePreviewUrl)}
+                >
                   <img
                     src={imagePreviewUrl}
                     alt="Imagen con marca de agua"
@@ -135,7 +166,10 @@ export function MarkPhoto() {
                 Descargar
               </Button>
             </div>
-            <div className="border rounded-lg p-4 bg-gray-50">
+            <div
+              className="border rounded-lg p-4 bg-gray-50"
+              onClick={() => handleOpenModal(imagePreviewUrl)}
+            >
               <img
                 src={imagePreviewUrl}
                 alt="Imagen con marca de agua"
@@ -145,6 +179,12 @@ export function MarkPhoto() {
           </div>
         )}
       </div>
+      <ModalImage
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        imageSrc={imageSrc}
+        imageAlt="Imagen con marca de agua"
+      />
     </section>
   );
 }

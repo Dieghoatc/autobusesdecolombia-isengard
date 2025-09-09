@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useVehicleStore } from "@/lib/store/useVehicleStore";
+import { markImageMutation } from "@/services/mark-image.mutation";
+
 import {
   Form,
   FormControl,
@@ -12,7 +15,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { markImageMutation } from "@/services/mark-image.mutation";
+
+import { setBogotaCity } from "@/lib/helpers/setBogota";
 
 const formSchema = z.object({
   photo: z
@@ -28,11 +32,21 @@ const formSchema = z.object({
     .refine((file) => file.size <= 5000000, "El archivo debe ser menor a 5MB"),
 });
 
+interface Author {
+  id: string;
+  name: string;
+}
+
+interface City {
+  id: string;
+  name: string;
+}
+
 interface InputFileProps {
-  author: string;
-  setAuthor: (author: string) => void;
-  city: string;
-  setCity: (city: string) => void;
+  author: Author;
+  setAuthor: (author: Author) => void;
+  city: City;
+  setCity: (city: City) => void;
   originalImagePreview: string;
   setOriginalImagePreview: (previewUrl: string) => void;
   imagePreviewUrl: string;
@@ -54,6 +68,8 @@ export function InputFile({
   setCity,
 }: InputFileProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { setPhotoStore } = useVehicleStore();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -90,16 +106,17 @@ export function InputFile({
     if (imagePreviewUrl) {
       URL.revokeObjectURL(imagePreviewUrl);
       setImagePreviewUrl("");
-    }
+    }  
 
     try {
       const formData = new FormData();
       formData.append("image", values.photo);
-      formData.append("author", author);
-      formData.append("location", city);
+      formData.append("author", author.name);
+      formData.append("location", setBogotaCity(city.name));
 
       // Llamar a la mutación que debe devolver un Blob o ArrayBuffer
       const response = await markImageMutation(formData);
+      setPhotoStore(response)
 
       // Crear URL desde el blob/buffer recibido
       let imageUrl = "";
@@ -133,8 +150,8 @@ export function InputFile({
 
   const resetAll = () => {
     form.reset();
-    setAuthor("");
-    setCity("");
+    setAuthor({ id: '', name: '' });
+    setCity({ id: '', name: '' });
     setSubmitMessage("");
     setShowComparison(false);
 

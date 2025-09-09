@@ -3,7 +3,7 @@ import { VehicleModelService } from "@/services/vehicle-model.query";
 import type { VehicleModelResponse } from "@/services/types/vehicle-model-response";
 
 export function useGetVehicleModel(){
-    const [models, setModel] = useState<VehicleModelResponse[]>([]);
+    const [vehicleModels, setVehicleModels] = useState<VehicleModelResponse[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -11,7 +11,7 @@ export function useGetVehicleModel(){
         const getPhotographers = VehicleModelService();
         setLoading(true);
         getPhotographers.then((data) => {
-            setModel(data);
+            setVehicleModels(data);
         }).catch((error) => {
             setError(error);
         }).finally(() => {
@@ -20,7 +20,7 @@ export function useGetVehicleModel(){
     }, []);
 
     return {
-        models,
+        vehicleModels,
         loading,
         error
     }

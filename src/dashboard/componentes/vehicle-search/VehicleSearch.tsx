@@ -5,11 +5,11 @@ import { useVehicleStore } from "@/lib/store/useVehicleStore";
 import styles from "./VehicleSearch.module.css";
 import { Input } from "@/components/ui/input";
 
-const API_URL = import.meta.env.VITE_APP_PUBLIC_API_URL_DEV;
+const API_URL = import.meta.env.VITE_APP_PUBLIC_API_URL_DEV || import.meta.env.VITE_APP_PUBLIC_API_URL_LOCAL;
 
 export function VehicleSearch() {
   const { setVehicleResponse, setError, setIsLoading } = useVehicleStore();
-  const [plate, setPlaca] = useState("");
+  const [plate, setPlate] = useState("");
   const [serial, setSerial] = useState("");
 
 
@@ -44,7 +44,7 @@ export function VehicleSearch() {
       <div className="flex gap-2 mt-2">
         <Input
           placeholder="Buscar por placa de vehículo"
-          onChange={(e) => setPlaca(e.target.value)}
+          onChange={(e) => setPlate(e.target.value)}
         />
         <div onClick={handlePlateSearch}>
           Buscar

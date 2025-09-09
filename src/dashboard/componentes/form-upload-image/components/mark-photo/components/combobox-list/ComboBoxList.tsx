@@ -1,20 +1,28 @@
 import { useMemo } from "react";
 import { Label } from "@/components/ui/label";
-import { ComboBoxItem } from "./ComboBoxItem";
+import { ComboBox } from "@/components/combobox";
 
 import { cities } from "@/lib/constants/cities";
 import { useGetPhotographers } from "../../../hooks/useGetPhotographers";
 
-interface ComboboxListProps {
-    author: string;
-    setAuthor: (author: string) => void;
-    city: string;
-    setCity: (city: string) => void;
-    
+interface Author {
+    id: string;
+    name: string;
 }
 
+interface City {
+    id: string;
+    name: string;
+}
 
-export function ComoboboxList({ author, setAuthor, city, setCity }: ComboboxListProps) {
+interface ComboboxListProps {
+    author: Author;
+    setAuthor: (author: Author) => void;
+    city: City;
+    setCity: (city: City) => void;    
+}
+
+export function ComoboBoxList({ author, setAuthor, city, setCity }: ComboboxListProps) {
   const { photographers, loading } = useGetPhotographers()
     useGetPhotographers();
 
@@ -22,13 +30,15 @@ export function ComoboboxList({ author, setAuthor, city, setCity }: ComboboxList
     return photographers.map((photographer) => ({
       value: photographer.name,
       label: photographer.name,
+      id: photographer.photographer_id,
     }));
   }, [photographers]);
 
   const citiesList = useMemo(() => {
-    return cities.map((city) => ({
+    return cities.map((city, _index) => ({
       value: `${city.city} - ${city.department}`,
       label: `${city.city} - ${city.department}`,
+      id: _index
     }));
   }, []);
 
@@ -44,7 +54,7 @@ export function ComoboboxList({ author, setAuthor, city, setCity }: ComboboxList
     <section>
       <div>
         <Label className="mb-2">Fotógrafo/a</Label>
-        <ComboBoxItem
+        <ComboBox
           value={author}
           setValue={setAuthor}
           list={photographersList}
@@ -53,7 +63,7 @@ export function ComoboboxList({ author, setAuthor, city, setCity }: ComboboxList
       </div>
       <div>
         <Label className="mb-2">Ciudad</Label>
-        <ComboBoxItem
+        <ComboBox
           value={city}
           setValue={setCity}
           list={citiesList}

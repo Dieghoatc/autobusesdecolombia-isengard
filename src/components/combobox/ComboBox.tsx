@@ -1,8 +1,8 @@
-import * as React from "react"
-import { Check, ChevronsUpDown } from "lucide-react"
+import * as React from "react";
+import { Check, ChevronsUpDown } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -10,27 +10,33 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
+
+interface Value {
+  id: string;
+  name: string;
+}
 
 interface List {
-    value: string;
-    label: string;
+  value: string;
+  label: string;
+  id: number;
 }
 
 interface ComboBoxProps {
-    value: string;
-    setValue: (value: string) => void;
-    list: List[];
-    text: string;
+  value: Value;
+  setValue: (value: Value) => void;
+  list: List[];
+  text: string;
 }
 
-export function ComboBoxItem({value, setValue, list, text}: ComboBoxProps) {
-  const [open, setOpen] = React.useState(false)
+export function ComboBox({ value, setValue, list, text }: ComboBoxProps) {
+  const [open, setOpen] = React.useState(false);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -41,8 +47,8 @@ export function ComboBoxItem({value, setValue, list, text}: ComboBoxProps) {
           aria-expanded={open}
           className="w-full justify-between"
         >
-          {value
-            ? list.find((name) => name.value === value)?.label
+          {value.name
+            ? list.find((name) => name.value === value.name)?.label
             : text}
           <ChevronsUpDown className="opacity-50" />
         </Button>
@@ -55,18 +61,22 @@ export function ComboBoxItem({value, setValue, list, text}: ComboBoxProps) {
             <CommandGroup>
               {list.map((name) => (
                 <CommandItem
-                  key={name.value}
+                  key={name.id}
                   value={name.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
-                    setOpen(false)
+                    setValue(
+                      currentValue === value.name
+                        ? { id: "", name: "" }
+                        : { id: name.id.toString(), name: currentValue }
+                    );
+                    setOpen(false);
                   }}
                 >
                   {name.label}
                   <Check
                     className={cn(
                       "ml-auto",
-                      value === name.value ? "opacity-100" : "opacity-0"
+                      value.name === name.label ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
@@ -76,5 +86,5 @@ export function ComboBoxItem({value, setValue, list, text}: ComboBoxProps) {
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }

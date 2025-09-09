@@ -1,0 +1,9 @@
+[
+  {
+    "transport_category_id": 1,
+    "name": "Transporte Interdepartamental",
+    "description": "Servicio de transporte público de pasajeros que conecta diferentes departamentos del país. Utilizan autobuses de mediano y largo alcance con mayor comodidad para viajes de varias horas. Las empresas requieren habilitación especial y operan desde terminales de transporte autorizados, cubriendo rutas como Bogotá-Medellín, Cali-Cartagena, entre otras.",
+    "slug": "transporte-interdepartamental",
+    "created_at": "2025-07-24T08:50:53.974Z"
+  }
+]
