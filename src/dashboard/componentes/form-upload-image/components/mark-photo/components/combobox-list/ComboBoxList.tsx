@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { ComboBox } from "@/components/combobox";
 
 import { cities } from "@/lib/constants/cities";
-import { useGetPhotographers } from "../../../hooks/useGetPhotographers";
+import { useGetPhotographers } from "../../../../hooks/useGetPhotographers";
 
 interface Author {
     id: string;

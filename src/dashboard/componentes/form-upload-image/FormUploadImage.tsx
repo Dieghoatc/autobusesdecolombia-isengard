@@ -1,10 +1,13 @@
 import { useState, useMemo } from "react";
 
-import { useGetVehicleType } from "./components/hooks/useGetVehicleType";
-import { useGetVehicleModel } from "./components/hooks/useGetVehicleModel";
-import { useGetCompany } from "./components/hooks/useGetCompany";
-import { useGetTransportCategories } from "./components/hooks/useGetTransportCategories";
 import { searchVehicleForPlate } from "@/services/vehicle-plate.query";
+
+import { useGetVehicleType } from "./hooks/useGetVehicleType";
+import { useGetVehicleModel } from "./hooks/useGetVehicleModel";
+import { useGetCompany } from "./hooks/useGetCompany";
+import { useGetTransportCategories } from "./hooks/useGetTransportCategories";
+import { useGetCompanyService } from "./hooks/useGetCompanyService";
+
 
 import { useVehicleStore } from "@/lib/store/useVehicleStore";
 import { uploadImageMutation } from "@/services/uploadImage.mutation";
@@ -43,6 +46,7 @@ export function FormUploadImage() {
   const { company, loading: companyLoading } = useGetCompany();
   const { transportCategory, loading: transportCategoryLoading } =
     useGetTransportCategories();
+  const { companyService, loading: companyServiceLoading } = useGetCompanyService();
 
   const [selectedVehicleType, setSelectedVehicleType] = useState({
     id: "",
@@ -57,6 +61,11 @@ export function FormUploadImage() {
     name: "",
   });
   const [selectedTransportCategory, setSelectedTransportCategory] = useState({
+    id: "",
+    name: "",
+  });
+
+  const [selectedCompanyService, setSelectedCompanyService] = useState({
     id: "",
     name: "",
   });
@@ -97,6 +106,14 @@ export function FormUploadImage() {
       id: transportCategory.transport_category_id,
     }));
   }, [transportCategory]);
+
+  const companyServiceList = useMemo(() => {
+    return companyService.map((companyService) => ({
+      value: companyService.company_service_name,
+      label: companyService.company_service_name,
+      id: companyService.company_service_id,
+    }));
+  }, [companyService]);
 
   const searchVehicleType = vehicleType.find(
     (vehicleType) => vehicleType.vehicle_type_id === vehicle?.vehicle_type_id
@@ -150,6 +167,7 @@ export function FormUploadImage() {
           "transport_category_id",
           selectedTransportCategory.id.toString()
         );
+        formData.append("company_service_id", selectedCompanyService.id.toString());
       }
 
       await uploadImageMutation(formData);
@@ -168,7 +186,7 @@ export function FormUploadImage() {
     vehicleTypeLoading ||
     vehicleModelsLoading ||
     companyLoading ||
-    transportCategoryLoading
+    transportCategoryLoading || companyServiceLoading
   ) {
     return <p>Cargando...</p>;
   }
@@ -276,6 +294,14 @@ export function FormUploadImage() {
                   setValue={setSelectedCompany}
                   list={companyList}
                   text="Compañía"
+                />
+              </div>
+              <div>
+                <ComboBox
+                  value={selectedCompanyService}
+                  setValue={setSelectedCompanyService}
+                  list={companyServiceList}
+                  text="Servicio"
                 />
               </div>
             </div>
