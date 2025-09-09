@@ -163,6 +163,7 @@ export function FormUploadImage() {
         formData.append("company_serial", values.serial?.toString() || "");
         formData.append("vehicle_type_id", selectedVehicleType.id.toString());
         formData.append("model_id", selectedVehicleModel.id.toString());
+        formData.append("company_id", selectedCompany.id.toString());
         formData.append(
           "transport_category_id",
           selectedTransportCategory.id.toString()
