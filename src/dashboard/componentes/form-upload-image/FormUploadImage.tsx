@@ -8,7 +8,6 @@ import { useGetCompany } from "./hooks/useGetCompany";
 import { useGetTransportCategories } from "./hooks/useGetTransportCategories";
 import { useGetCompanyService } from "./hooks/useGetCompanyService";
 
-
 import { useVehicleStore } from "@/lib/store/useVehicleStore";
 import { uploadImageMutation } from "@/services/uploadImage.mutation";
 
@@ -46,7 +45,8 @@ export function FormUploadImage() {
   const { company, loading: companyLoading } = useGetCompany();
   const { transportCategory, loading: transportCategoryLoading } =
     useGetTransportCategories();
-  const { companyService, loading: companyServiceLoading } = useGetCompanyService();
+  const { companyService, loading: companyServiceLoading } =
+    useGetCompanyService();
 
   const [selectedVehicleType, setSelectedVehicleType] = useState({
     id: "",
@@ -167,7 +167,12 @@ export function FormUploadImage() {
           "transport_category_id",
           selectedTransportCategory.id.toString()
         );
-        formData.append("company_service_id", selectedCompanyService.id.toString());
+        if (selectedCompanyService.id) {
+          formData.append(
+            "company_service_id",
+            selectedCompanyService.id.toString()
+          );
+        }
       }
 
       await uploadImageMutation(formData);
@@ -186,7 +191,8 @@ export function FormUploadImage() {
     vehicleTypeLoading ||
     vehicleModelsLoading ||
     companyLoading ||
-    transportCategoryLoading || companyServiceLoading
+    transportCategoryLoading ||
+    companyServiceLoading
   ) {
     return <p>Cargando...</p>;
   }
