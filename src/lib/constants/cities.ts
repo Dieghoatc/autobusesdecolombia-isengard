@@ -29,6 +29,7 @@ export const cities = [
     { department: "Cundinamarca", city: "Chía" },
     { department: "Cundinamarca", city: "Mosquera" },
     { department: "Cundinamarca", city: "Funza" },
+    { department: "Cundinamarca", city: "Cota" },
   
     { department: "Valle del Cauca", city: "Cali" },
     { department: "Valle del Cauca", city: "Palmira" },
@@ -86,6 +87,9 @@ export const cities = [
     { department: "Norte de Santander", city: "Ocaña" },
   
     { department: "Quindío", city: "Armenia" },
+    { department: "Quindío", city: "Calarcá" },
+    { department: "Quindío", city: "Alto de La Línea" },
+
   
     { department: "Risaralda", city: "Pereira" },
     { department: "Risaralda", city: "Dosquebradas" },
