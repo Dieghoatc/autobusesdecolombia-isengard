@@ -85,6 +85,8 @@ export const cities = [
   
     { department: "Norte de Santander", city: "Cúcuta" },
     { department: "Norte de Santander", city: "Ocaña" },
+    { department: "Norte de Santander", city: "Pamplona" },
+
   
     { department: "Quindío", city: "Armenia" },
     { department: "Quindío", city: "Calarcá" },
