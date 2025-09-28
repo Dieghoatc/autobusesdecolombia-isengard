@@ -106,4 +106,6 @@ export const cities = [
 
   { department: "Tolima", city: "Ibagué" },
   { department: "Tolima", city: "Espinal" },
+  
+  { department: "Nuestos", city: "Recuerdos" },
 ];
