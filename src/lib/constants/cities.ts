@@ -93,6 +93,8 @@ export const cities = [
 
   { department: "Risaralda", city: "Pereira" },
   { department: "Risaralda", city: "Dosquebradas" },
+  { department: "Risaralda", city: "Irra" },
+  { department: "Risaralda", city: "Quinchía" },
 
   { department: "Santander", city: "Bucaramanga" },
   { department: "Santander", city: "Floridablanca" },
@@ -106,6 +108,8 @@ export const cities = [
 
   { department: "Tolima", city: "Ibagué" },
   { department: "Tolima", city: "Espinal" },
-  
+  { department: "Tolima", city: "Icononzo" },
+
   { department: "Nuestos", city: "Recuerdos" },
+  { department: "", city: "" },
 ];
