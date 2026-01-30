@@ -12,6 +12,7 @@ export const cities = [
   { department: "Antioquia", city: "Rionegro" },
   { department: "Antioquia", city: "Sabaneta" },
   { department: "Antioquia", city: "La Ceja" },
+  { department: "Antioquia", city: "Doradal" },
 
   { department: "Atlántico", city: "Barranquilla" },
   { department: "Atlántico", city: "Soledad" },
@@ -30,6 +31,10 @@ export const cities = [
   { department: "Cundinamarca", city: "Mosquera" },
   { department: "Cundinamarca", city: "Funza" },
   { department: "Cundinamarca", city: "Cota" },
+  { department: "Cundinamarca", city: "Chinauta" },
+  { department: "Cundinamarca", city: "Alto de Rosas" },
+  { department: "Cundinamarca", city: "Silvania" },
+  { department: "Cundinamarca", city: "Alto de La Tribuna" },
 
   { department: "Valle del Cauca", city: "Cali" },
   { department: "Valle del Cauca", city: "Palmira" },
@@ -47,6 +52,9 @@ export const cities = [
   { department: "Boyacá", city: "Tunja" },
   { department: "Boyacá", city: "Duitama" },
   { department: "Boyacá", city: "Sogamoso" },
+  { department: "Boyacá", city: "Paipa" },
+  { department: "Boyacá", city: "Puente Boyacá" },
+  { department: "Boyacá", city: "Villa de Leyva" },
 
   { department: "Caldas", city: "Manizales" },
   { department: "Caldas", city: "La Dorada" },
@@ -60,6 +68,8 @@ export const cities = [
 
   { department: "Cesar", city: "Valledupar" },
   { department: "Cesar", city: "Aguachica" },
+  { department: "Cesar", city: "Pailitas" },
+  { department: "Cesar", city: "San Alberto" },
 
   { department: "Chocó", city: "Quibdó" },
 
@@ -68,6 +78,7 @@ export const cities = [
 
   { department: "Huila", city: "Neiva" },
   { department: "Huila", city: "Pitalito" },
+  { department: "Huila", city: "Garzón" },
 
   { department: "La Guajira", city: "Riohacha" },
   { department: "La Guajira", city: "Maicao" },
@@ -75,6 +86,7 @@ export const cities = [
 
   { department: "Magdalena", city: "Santa Marta" },
   { department: "Magdalena", city: "Ciénaga" },
+  { department: "Magdalena", city: "El Banco" },
 
   { department: "Meta", city: "Villavicencio" },
   { department: "Meta", city: "Acacías" },
@@ -103,13 +115,23 @@ export const cities = [
   { department: "Santander", city: "Barrancabermeja" },
   { department: "Santander", city: "Tona" },
   { department: "Santander", city: "Berlin" },
+  { department: "Santander", city: "Málaga" },
+  { department: "Santander", city: "San Gil" },
+  { department: "Santander", city: "El Cañón del Chicamocha" },
 
   { department: "Sucre", city: "Sincelejo" },
+  { department: "Sucre", city: "Tolú" },
 
   { department: "Tolima", city: "Ibagué" },
   { department: "Tolima", city: "Espinal" },
   { department: "Tolima", city: "Icononzo" },
+  { department: "Tolima", city: "Melgar" },
+  { department: "Tolima", city: "Chaparral" },
+  { department: "Tolima", city: "Honda" },
+  { department: "Tolima", city: "Gualanday" },
 
-  { department: "Nuestos", city: "Recuerdos" },
-  { department: "", city: "" },
+  { department: "Putumayo", city: "Puerto Asís" },
+  { department: "Vichada", city: "Puerto Carreño" },
+
+  { department: "Nuestros", city: "Recuerdos" },
 ];
